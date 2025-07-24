@@ -28,12 +28,15 @@ curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencen
 
 腾讯云 pyenv 环境一键安装：
 ```bash
-
 # ✅ 安装 curl（如未安装）并执行后续所有内容
 sudo apt update && sudo apt install -y curl && \
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencent_pyenv_install.sh | sudo bash
-
-
 ```
 
---- 
+安装完成后，登录 ubuntu 用户，激活虚拟环境 Alpha 并使用 pip：
+```bash
+source ~/.bashrc
+pyenv activate Alpha
+pip list
+```
+
