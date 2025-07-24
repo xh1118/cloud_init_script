@@ -49,9 +49,8 @@ git clone https://github.com/pyenv/pyenv-virtualenv.git "$PYENV_ROOT/plugins/pye
 echo 'eval "$(pyenv virtualenv-init -)"' >> "$HOME/.bashrc"
 eval "$(pyenv virtualenv-init -)"
 
-# 创建并激活虚拟环境
+# 创建虚拟环境（不激活）
 pyenv virtualenv 3.11.0 Alpha
-pyenv activate Alpha
 
 # 安装 pip 工具包和你的库
 pip install --upgrade pip setuptools wheel
