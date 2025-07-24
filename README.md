@@ -28,7 +28,11 @@ curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencen
 
 腾讯云 pyenv 环境一键安装：
 ```bash
-curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencent_pyenv_install.sh | sudo bash
+
+# ✅ 安装 curl（如未安装）并执行后续所有内容
+sudo apt update && sudo apt install -y curl && \
+curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencent_pyenv_install.sh | sudo env DEBIAN_FRONTEND=noninteractive bash
+
 ```
 
 --- 
