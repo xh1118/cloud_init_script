@@ -5,16 +5,19 @@ export DEBIAN_FRONTEND=noninteractive
 # ✅ 防止 SSH 被升级中断
 apt-mark hold openssh-server openssh-client || true
 
-# ✅ 添加 swap
-if swapon --show | grep -q "/swapfile"; then
-  echo "swapfile 已存在"
-else
-  fallocate -l 4G /swapfile
-  chmod 600 /swapfile
-  mkswap /swapfile
-  swapon /swapfile
-  echo '/swapfile none swap sw 0 0' >> /etc/fstab
+# ✅ 检查 root 权限
+if [ "$EUID" -ne 0 ]; then 
+    echo "请使用 root 用户运行此脚本"
+    exit 1
 fi
+
+# ✅ 创建 swap（标准写法，无重复判断）
+echo "创建4GB虚拟内存..."
+fallocate -l 4G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo '/swapfile none swap sw 0 0' >> /etc/fstab
 
 # ✅ 安装依赖
 apt update
