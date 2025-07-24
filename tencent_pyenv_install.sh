@@ -26,7 +26,7 @@ apt install -y make build-essential libssl-dev zlib1g-dev \
   libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
   libffi-dev liblzma-dev git
 
-# ✅ 以 ubuntu 用户安装 pyenv、Python、虚拟环境、pip 包
+# ✅ 以 ubuntu 用户安装 pyenv、Python、虚拟环境
 sudo -u ubuntu -H bash <<'EOF'
 set -e
 export HOME="/home/ubuntu"
@@ -53,11 +53,14 @@ source "$HOME/.bashrc"
 # 创建虚拟环境
 pyenv virtualenv 3.11.0 Alpha
 
-# 激活虚拟环境并安装 pip 包
-pyenv activate Alpha
-pip install --upgrade pip setuptools wheel
-pip install xbx-py11
+# 不在脚本里激活虚拟环境和安装 pip 包
 EOF
+
+echo "请登录 ubuntu 用户后，执行以下命令激活虚拟环境并安装包："
+echo "source ~/.bashrc"
+echo "pyenv activate Alpha"
+echo "pip install --upgrade pip setuptools wheel"
+echo "pip install xbx-py11"
 
 # ✅ 安装 Node.js 和 PM2
 apt install -y nodejs npm
@@ -68,5 +71,9 @@ cd /home/ubuntu
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -i google-chrome-stable_current_amd64.deb || apt --fix-broken install -y
 rm -f google-chrome-stable_current_amd64.deb
+
+# ✅ 安装 pip 包到 Alpha 虚拟环境
+/home/ubuntu/.pyenv/versions/Alpha/bin/pip install --upgrade pip setuptools wheel
+/home/ubuntu/.pyenv/versions/Alpha/bin/pip install xbx-py11
 
 echo "🎉 安装完成！pyenv、Python、Alpha 虚拟环境、xbx-py11、PM2、Chrome 安装成功"
