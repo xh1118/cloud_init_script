@@ -1,10 +1,7 @@
 #!/bin/bash
 
 # 1. 设置环境变量
-export PYENV_ROOT="/home/ubuntu/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv init --path)"
+export PATH="/home/ubuntu/anaconda3/bin:$PATH"
 
 # 2. 生成 startup.json 文件
 cat > startup.json <<EOF
@@ -13,7 +10,7 @@ cat > startup.json <<EOF
         {
             "name": "pmt-startup",
             "script": "/home/ubuntu/git/position-mgmt-trading/startup.py",
-            "exec_interpreter": "/home/ubuntu/.pyenv/versions/Alpha/bin/python",
+            "exec_interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
             "merge_logs": false,
             "watch": false,
             "error_file": "/home/ubuntu/logs/pmt-startup.error.log",
@@ -24,7 +21,7 @@ cat > startup.json <<EOF
         {
             "name": "pmt-monitor",
             "script": "/home/ubuntu/git/position-mgmt-trading/monitor.py",
-            "exec_interpreter": "/home/ubuntu/.pyenv/versions/Alpha/bin/python",
+            "exec_interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
             "merge_logs": false,
             "watch": false,
             "error_file": "/home/ubuntu/logs/pmt-monitor.error.log",
@@ -35,7 +32,7 @@ cat > startup.json <<EOF
         {
             "name": "pmt-delist",
             "script": "/home/ubuntu/git/position-mgmt-trading/delist.py",
-            "exec_interpreter": "/home/ubuntu/.pyenv/versions/Alpha/bin/python",
+            "exec_interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
             "merge_logs": false,
             "watch": false,
             "error_file": "/home/ubuntu/logs/pmt-delist.error.log",

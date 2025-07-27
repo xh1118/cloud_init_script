@@ -62,15 +62,17 @@ eval "$(pyenv virtualenv-init -)"
 # 创建虚拟环境
 pyenv virtualenv 3.11.0 Alpha
 
-# 激活虚拟环境并安装包
-pyenv activate Alpha
-pip install --upgrade pip setuptools wheel
-pip install xbx-py11
+# 创建虚拟环境
+pyenv virtualenv 3.11.0 Alpha
 
 echo "pyenv 和 Alpha 环境安装完成"
 EOF
 
-echo "请登录 ubuntu 用户后，执行以下命令激活虚拟环境并安装包："
+echo "pyenv 和 Alpha 环境安装完成"
+echo ""
+echo "🎉 基础安装完成！pyenv、Python、Alpha 虚拟环境、PM2、Chrome 安装成功"
+echo ""
+echo "请登录 ubuntu 用户后，执行以下命令完成安装："
 echo "source ~/.bashrc"
 echo "pyenv activate Alpha"
 echo "pip install --upgrade pip setuptools wheel"
@@ -86,8 +88,4 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -i google-chrome-stable_current_amd64.deb || apt --fix-broken install -y
 rm -f google-chrome-stable_current_amd64.deb
 
-# ✅ 安装 pip 包到 Alpha 虚拟环境
-/home/ubuntu/.pyenv/versions/Alpha/bin/pip install --upgrade pip setuptools wheel
-/home/ubuntu/.pyenv/versions/Alpha/bin/pip install xbx-py11
-
-echo "🎉 安装完成！pyenv、Python、Alpha 虚拟环境、xbx-py11、PM2、Chrome 安装成功"
+echo "🎉 安装完成！pyenv、Python、Alpha 虚拟环境、PM2、Chrome 安装成功"
