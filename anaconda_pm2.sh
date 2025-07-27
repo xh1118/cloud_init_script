@@ -3,14 +3,18 @@
 # 1. 设置环境变量
 export PATH="/home/ubuntu/anaconda3/bin:$PATH"
 
-# 2. 生成 startup.json 文件
+# 停止所有应用
+pm2 delete all
+
+# 重新创建配置文件
 cat > startup.json <<EOF
 {
     "apps": [
         {
             "name": "pmt-startup",
             "script": "/home/ubuntu/git/position-mgmt-trading/startup.py",
-            "exec_interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
+            "interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
+            "cwd": "/home/ubuntu/git/position-mgmt-trading",
             "merge_logs": false,
             "watch": false,
             "error_file": "/home/ubuntu/logs/pmt-startup.error.log",
@@ -21,7 +25,8 @@ cat > startup.json <<EOF
         {
             "name": "pmt-monitor",
             "script": "/home/ubuntu/git/position-mgmt-trading/monitor.py",
-            "exec_interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
+            "interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
+            "cwd": "/home/ubuntu/git/position-mgmt-trading",
             "merge_logs": false,
             "watch": false,
             "error_file": "/home/ubuntu/logs/pmt-monitor.error.log",
@@ -32,7 +37,8 @@ cat > startup.json <<EOF
         {
             "name": "pmt-delist",
             "script": "/home/ubuntu/git/position-mgmt-trading/delist.py",
-            "exec_interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
+            "interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
+            "cwd": "/home/ubuntu/git/position-mgmt-trading",
             "merge_logs": false,
             "watch": false,
             "error_file": "/home/ubuntu/logs/pmt-delist.error.log",
@@ -44,7 +50,7 @@ cat > startup.json <<EOF
 }
 EOF
 
-# 3. 启动应用
+# 重新启动
 pm2 start startup.json
 
 # 4. 安装并配置 pm2-logrotate
