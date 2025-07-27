@@ -6,78 +6,74 @@
 # 设置错误时退出
 set -e
 
-# 创建4GB虚拟内存（swap）
-echo "创建4GB虚拟内存..."
-sudo fallocate -l 4G ~/swapfile
-sudo chmod 600 ~/swapfile
-sudo mkswap ~/swapfile
-sudo swapon ~/swapfile
-echo '~/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-
 # 检查是否为 ubuntu 用户
 if [ "$USER" != "ubuntu" ]; then 
-    echo "请使用 ubuntu 用户运行此脚本"
+    echo "❌ 请使用 ubuntu 用户运行此脚本"
     exit 1
 fi
 
+echo "✅ 当前用户为 ubuntu，开始执行安装流程..."
+
+# 创建 4GB 虚拟内存（swap）
+echo "📦 创建 4GB 虚拟内存..."
+sudo fallocate -l 4G /home/ubuntu/swapfile
+sudo chmod 600 /home/ubuntu/swapfile
+sudo mkswap /home/ubuntu/swapfile
+sudo swapon /home/ubuntu/swapfile
+echo '/home/ubuntu/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
 # 安装 Anaconda
-echo "开始安装 Anaconda..."
-# 下载 Anaconda 安装脚本
-wget https://repo.anaconda.com/archive/Anaconda3-2024.06-1-Linux-x86_64.sh -O ~/anaconda_installer.sh
-# 运行安装脚本
-bash ~/anaconda_installer.sh -b -p $HOME/anaconda3
-# 将 Anaconda 添加到 PATH
-echo 'export PATH="$HOME/anaconda3/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-# 验证 Anaconda 安装
+echo "📦 开始安装 Anaconda..."
+wget https://repo.anaconda.com/archive/Anaconda3-2024.06-1-Linux-x86_64.sh -O /home/ubuntu/anaconda_installer.sh
+bash /home/ubuntu/anaconda_installer.sh -b -p /home/ubuntu/anaconda3
+
+# 添加 Anaconda 到 PATH，并初始化 conda
+echo 'export PATH="/home/ubuntu/anaconda3/bin:$PATH"' >> /home/ubuntu/.bashrc
+/home/ubuntu/anaconda3/bin/conda init bash
+
+# 清理潜在的 bashrc 错误行
+sed -i '/^fi$/d' /home/ubuntu/.bashrc
+
+# 加载新的环境变量
+source /home/ubuntu/.bashrc
+
+# 验证 Conda 安装
+echo "🧪 验证 Conda..."
 conda --version
 
-# 安装 PM2
-echo "开始安装 PM2..."
-# 安装 Node.js（PM2 依赖 Node.js）
+# 安装 Node.js 和 PM2
+echo "📦 安装 Node.js 和 PM2..."
 sudo apt update
 sudo apt install -y nodejs npm
-# 安装 PM2
 sudo npm install -g pm2
-# 验证 PM2 安装
 pm2 --version
 
-# 创建 Python 3.11 的 Alpha 环境
-echo "创建 Python 3.11 的 Alpha 环境..."
-# 切换进Anaconda3的目录中
-cd anaconda3
-# 激活base环境
+# 创建 Python 3.11 的虚拟环境 Alpha
+echo "🐍 创建 Python 3.11 的 Alpha 环境..."
+cd /home/ubuntu/anaconda3
 source bin/activate
-# 创建新的环境
 conda create -n Alpha python=3.11 -y
-# 激活环境
 conda activate Alpha
-# 验证 Python 版本
 python --version
 
-# 安装 xbx-py11 库
-echo "安装 xbx-py11 库..."
+# 安装 Python 库 xbx-py11
+echo "📦 安装 xbx-py11 库..."
 pip install xbx-py11
 
-# 安装谷歌
-echo "安装谷歌..."
-# 更新环境
+# 安装谷歌 Chrome
+echo "🌐 安装 Google Chrome 浏览器..."
 sudo apt update && sudo apt upgrade -y
-# 下载谷歌
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# 安装谷歌
-sudo dpkg -i google-chrome-stable_current_amd64.deb
-sudo apt --fix-broken install -y
-# 验证谷歌
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /home/ubuntu/google-chrome.deb
+sudo dpkg -i /home/ubuntu/google-chrome.deb || sudo apt --fix-broken install -y
 google-chrome --version
 
-# 完成
-echo "Anaconda、PM2、谷歌和 Python 环境安装完成，且安装了 xbx-py11 库。"
-
 # 清理安装文件
-rm -f ~/anaconda_installer.sh
-rm -f google-chrome-stable_current_amd64.deb
+rm -f /home/ubuntu/anaconda_installer.sh
+rm -f /home/ubuntu/google-chrome.deb
 
-# 启动新的交互式 shell，保持在虚拟环境中
-exec $SHELL
-exit 
+# 成功提示
+echo "🎉 安装完成：Anaconda、PM2、Google Chrome、Alpha 环境和 xbx-py11 均已部署成功！"
+
+# 启动交互式 shell 并进入 Alpha 环境
+echo "🔄 切换到 Alpha 环境..."
+exec bash -i -c "conda activate Alpha"
