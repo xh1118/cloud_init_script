@@ -7,7 +7,7 @@ cat > startup.json <<EOF
         {
             "name": "pmt-startup",
             "script": "/home/ubuntu/git/position-mgmt-trading/startup.py",
-            "exec_interpreter": "/home/ubuntu/.pyenv/versions/3.11.0/envs/Alpha/bin/python",
+            "exec_interpreter": "/home/ubuntu/.pyenv/versions/Alpha/bin/python",
             "merge_logs": false,
             "watch": false,
             "error_file": "/home/ubuntu/logs/pmt-startup.error.log",
@@ -18,7 +18,7 @@ cat > startup.json <<EOF
         {
             "name": "pmt-monitor",
             "script": "/home/ubuntu/git/position-mgmt-trading/monitor.py",
-            "exec_interpreter": "/home/ubuntu/.pyenv/versions/3.11.0/envs/Alpha/bin/python",
+            "exec_interpreter": "/home/ubuntu/.pyenv/versions/Alpha/bin/python",
             "merge_logs": false,
             "watch": false,
             "error_file": "/home/ubuntu/logs/pmt-monitor.error.log",
@@ -29,7 +29,7 @@ cat > startup.json <<EOF
         {
             "name": "pmt-delist",
             "script": "/home/ubuntu/git/position-mgmt-trading/delist.py",
-            "exec_interpreter": "/home/ubuntu/.pyenv/versions/3.11.0/envs/Alpha/bin/python",
+            "exec_interpreter": "/home/ubuntu/.pyenv/versions/Alpha/bin/python",
             "merge_logs": false,
             "watch": false,
             "error_file": "/home/ubuntu/logs/pmt-delist.error.log",

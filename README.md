@@ -45,6 +45,8 @@ pip list
 
 该脚本会自动生成 startup.json，启动所有 PM2 应用，并配置日志轮换、开机自启等。
 
+**⚠️ 重要更新：** 脚本已修复 Python 解释器路径问题，现在使用正确的 pyenv 环境路径 `/home/ubuntu/.pyenv/versions/Alpha/bin/python`。
+
 使用方法：
 ```bash
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencent_pyenv_startup_pm2.sh | bash
@@ -53,9 +55,14 @@ curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencen
 脚本功能：
 - 自动生成 PM2 启动配置 startup.json
 - 启动所有 Python 应用（startup.py、monitor.py、delist.py）
+- 使用正确的 pyenv Python 解释器路径
 - 配置 pm2-logrotate 日志轮换（最大100M，保留30份，压缩，定时轮换）
 - 查看应用状态和日志
 - 保存 PM2 配置并设置开机自启
+
+**前置条件：**
+- 确保已安装 pyenv 并创建了 Alpha 虚拟环境
+- 确保项目代码位于 `/home/ubuntu/git/position-mgmt-trading/` 目录
 
 
 
@@ -82,7 +89,7 @@ curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/pyenv_
 ### 2. 只下载文件，不执行
 
 ```bash
-<code_block_to_apply_changes_from>
+curl -O https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencent_pyenv_startup_pm2.sh
 ```
 - `-O` 表示保存为本地同名文件。
 
