@@ -8,11 +8,11 @@ set -e
 
 # 创建4GB虚拟内存（swap）
 echo "创建4GB虚拟内存..."
-sudo fallocate -l 4G /home/ubuntu/swapfile
-sudo chmod 600 /home/ubuntu/swapfile
-sudo mkswap /home/ubuntu/swapfile
-sudo swapon /home/ubuntu/swapfile
-echo '/home/ubuntu/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+sudo fallocate -l 4G ~/swapfile
+sudo chmod 600 ~/swapfile
+sudo mkswap ~/swapfile
+sudo swapon ~/swapfile
+echo '~/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 # 检查是否为 ubuntu 用户
 if [ "$USER" != "ubuntu" ]; then 
