@@ -43,11 +43,26 @@ pip list
 
 ## 腾讯云 PM2 一键部署与日志轮换自动化：
 
-该脚本会自动生成 startup.json，启动所有 PM2 应用，并配置日志轮换、开机自启等。
+### 方法一：直接启动 Python 应用（推荐）
 
-**⚠️ 重要更新：** 脚本已修复 Python 解释器路径问题，现在使用正确的 pyenv 环境路径 `/home/ubuntu/.pyenv/versions/Alpha/bin/python`。
+使用新的启动脚本，避免 PM2 Python 解释器问题：
 
-使用方法：
+```bash
+curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/start_python_apps.sh | bash
+```
+
+### 方法二：PM2 管理（v2 版本）
+
+如果需要在 PM2 中管理应用，使用改进版本：
+
+```bash
+curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencent_pyenv_startup_pm2_v2.sh | bash
+```
+
+### 方法三：原始 PM2 方法
+
+**⚠️ 注意：** 原始方法可能存在 Python 解释器识别问题。
+
 ```bash
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencent_pyenv_startup_pm2.sh | bash
 ```
