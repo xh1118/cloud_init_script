@@ -1,4 +1,9 @@
-#1.生成 startup.json 文件
+#!/bin/bash
+
+# 1. 设置环境变量
+export PATH="/home/ubuntu/anaconda3/bin:$PATH"
+
+# 2. 生成 startup.json 文件
 cat > startup.json <<EOF
 {
     "apps": [
@@ -39,23 +44,23 @@ cat > startup.json <<EOF
 }
 EOF
 
-# 2. 启动应用
+# 3. 启动应用
 pm2 start startup.json
 
-# 3. 安装并配置 pm2-logrotate
+# 4. 安装并配置 pm2-logrotate
 pm2 install pm2-logrotate
 pm2 set pm2-logrotate:max_size 100M
 pm2 set pm2-logrotate:retain 30
 pm2 set pm2-logrotate:compress true
 pm2 set pm2-logrotate:rotateInterval '37 3 * * *'
 
-# 4. 查看当前日志轮换配置
+# 5. 查看当前日志轮换配置
 pm2 conf pm2-logrotate
 
-# 5. 查看应用状态和日志
+# 6. 查看应用状态和日志
 pm2 status
 pm2 logs
 
-# 6. 保存 PM2 配置并设置开机自启
+# 7. 保存 PM2 配置并设置开机自启
 pm2 save
-pm2 startup
+pm2 startup 
