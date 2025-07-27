@@ -1,6 +1,12 @@
 #!/bin/bash
 
-# 1. 生成 startup.json 文件
+# 1. 设置环境变量
+export PYENV_ROOT="/home/ubuntu/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
+
+# 2. 生成 startup.json 文件
 cat > startup.json <<EOF
 {
     "apps": [

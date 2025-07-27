@@ -36,10 +36,17 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 # 安装 pyenv
 rm -rf "$PYENV_ROOT"
 git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
+
+# 完整的环境变量设置
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> "$HOME/.bashrc"
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> "$HOME/.bashrc"
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> "$HOME/.bashrc"
-source "$HOME/.bashrc"
+echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init --path)"\nfi' >> "$HOME/.bashrc"
+
+# 立即加载环境变量
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
 
 # 安装 Python 3.11.0
 pyenv install 3.11.0
@@ -48,12 +55,19 @@ pyenv global 3.11.0
 # 安装 pyenv-virtualenv 插件
 git clone https://github.com/pyenv/pyenv-virtualenv.git "$(pyenv root)/plugins/pyenv-virtualenv"
 echo 'eval "$(pyenv virtualenv-init -)"' >> "$HOME/.bashrc"
-source "$HOME/.bashrc"
+
+# 立即加载 virtualenv 插件
+eval "$(pyenv virtualenv-init -)"
 
 # 创建虚拟环境
 pyenv virtualenv 3.11.0 Alpha
 
-# 不在脚本里激活虚拟环境和安装 pip 包
+# 激活虚拟环境并安装包
+pyenv activate Alpha
+pip install --upgrade pip setuptools wheel
+pip install xbx-py11
+
+echo "pyenv 和 Alpha 环境安装完成"
 EOF
 
 echo "请登录 ubuntu 用户后，执行以下命令激活虚拟环境并安装包："

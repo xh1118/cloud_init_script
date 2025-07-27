@@ -59,9 +59,9 @@ curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/start_
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencent_pyenv_startup_pm2_v2.sh | bash
 ```
 
-### 方法三：原始 PM2 方法
+### 方法三：原始 PM2 方法（已修复）
 
-**⚠️ 注意：** 原始方法可能存在 Python 解释器识别问题。
+**✅ 已修复：** 修复了 pyenv 环境变量设置问题，现在 PM2 可以正确识别 Python 解释器。
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/tencent_pyenv_startup_pm2.sh | bash
