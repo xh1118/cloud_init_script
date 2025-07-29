@@ -129,4 +129,58 @@ chmod +x setup_pm2.sh
 
 如需帮你生成 curl 命令或有其他自动化需求，欢迎随时提问！
 
+## 🚀 一键部署命令：
+
+```bash
+git clone https://github.com/xh1118/cloud_init_script.git && cd cloud_init_script && chmod +x anaconda_pm2.sh && bash anaconda_pm2.sh
+```
+
+## 📋 执行步骤：
+
+### 1. 确保 Anaconda 环境正常
+```bash
+# 验证 conda 可用
+conda --version
+
+# 激活 Alpha 环境
+conda activate Alpha
+```
+
+### 2. 安装 PM2（如果还没有）
+```bash
+# 安装 Node.js 和 PM2
+sudo apt update
+sudo apt install -y nodejs npm
+sudo npm install -g pm2
+```
+
+### 3. 执行一键部署
+```bash
+git clone https://github.com/xh1118/cloud_init_script.git && cd cloud_init_script && chmod +x anaconda_pm2.sh && bash anaconda_pm2.sh
+```
+
+## ✅ 脚本会执行：
+
+1. 设置 Anaconda 环境变量
+2. 停止所有现有 PM2 应用
+3. 创建新的 PM2 配置文件
+4. 启动三个应用：pmt-startup、pmt-monitor、pmt-delist
+5. 配置日志轮换
+6. 设置开机自启
+
+## 🔍 验证结果：
+
+```bash
+# 查看应用状态
+pm2 status
+
+# 查看日志
+pm2 logs
+
+# 查看特定应用
+pm2 logs pmt-startup
+```
+
+现在可以运行一键部署命令了！
+
 
