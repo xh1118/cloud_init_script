@@ -56,10 +56,18 @@ pyenv virtualenv 3.11.0 Alpha
 
 echo "pyenv 和 Alpha 环境安装完成"
 
-# ✅ 自动激活环境并安装依赖
+# ✅ 使用 pyenv shell 命令激活环境（更可靠）
 echo "自动激活环境并安装依赖..."
-source ~/.bashrc
-pyenv activate Alpha
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+pyenv shell Alpha
+
+# 验证环境是否正确激活
+python --version
+which python
+
+# 安装依赖
 pip install --upgrade pip setuptools wheel
 pip install xbx-py11
 
