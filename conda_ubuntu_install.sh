@@ -65,6 +65,10 @@ echo "中文字体安装完成"
 
 # 完成
 echo "Anaconda、PM2、谷歌和 Python 环境安装完成，且安装了 xbx-py11 库和中文字体。"
+echo ""
+echo "请执行以下命令加载环境："
+echo "source ~/.bashrc"
+echo "conda activate Alpha"
 
 # 启动新的交互式 shell，保持在虚拟环境中
 exec $SHELL

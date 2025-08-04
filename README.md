@@ -5,7 +5,7 @@
 #### 1.1 Anaconda 环境
 ```bash
 # 安装环境
-curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/conda_install.sh | bash
+curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/conda_ubuntu_install.sh | bash
 ```
 
 #### 1.2 数据中心应用
