@@ -6,7 +6,8 @@
 ```bash
 # 安装环境
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/conda_install.sh | bash
-
+```
+```bash
 # 配置 PM2
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/anaconda_pm2_json.sh | bash
 ```
@@ -15,7 +16,8 @@ curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/anacon
 ```bash
 # 安装环境
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/pyenv_install.sh | bash
-
+```
+```bash
 # 配置 PM2
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/pyenv_pm2_json.sh | bash
 ```
