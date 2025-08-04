@@ -11,7 +11,7 @@ curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/conda_
 ### 1.2 数据中心应用
 ```bash
 # 自动化部署 datacenter 应用
-curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/datacenter_auto.sh | bash
+curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/conda_datacenter_auto.sh | bash
 ```
 
 ### 1.3 实盘pm2部署
@@ -28,7 +28,7 @@ curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/pyenv_
 ### 2.2 数据中心应用
 ```bash
 # 自动化部署 datacenter 应用
-curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/datacenter_auto.sh | bash
+curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/pyenv_datacenter_auto.sh | bash
 ```
 
 ### 2.3 实盘pm2部署
