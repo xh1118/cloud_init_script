@@ -2,36 +2,36 @@
 
 ## 1.Anaconda
 
-### 1.1 Anaconda 环境
+#### 1.1 Anaconda 环境
 ```bash
 # 安装环境
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/conda_install.sh | bash
 ```
 
-### 1.2 数据中心应用
+#### 1.2 数据中心应用
 ```bash
 # 自动化部署 datacenter 应用
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/conda_datacenter_auto.sh | bash
 ```
 
-### 1.3 实盘pm2部署
+#### 1.3 实盘pm2部署
 ```bash
 # 配置 PM2
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/conda_pm2_json.sh | bash
 ```
 ## 2.pyenv
-### 2.1 pyenv 环境
+#### 2.1 pyenv 环境
 ```bash
 # 安装环境
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/pyenv_install.sh | bash
 ```
-### 2.2 数据中心应用
+#### 2.2 数据中心应用
 ```bash
 # 自动化部署 datacenter 应用
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/pyenv_datacenter_auto.sh | bash
 ```
 
-### 2.3 实盘pm2部署
+#### 2.3 实盘pm2部署
 ```bash
 # 配置 PM2
 curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/pyenv_pm2_json.sh | bash
