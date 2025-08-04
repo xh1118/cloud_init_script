@@ -3,33 +3,25 @@ set -e
 export DEBIAN_FRONTEND=noninteractive
 
 # ✅ 防止 SSH 被升级中断
-apt-mark hold openssh-server openssh-client || true
-
-# ✅ 检查 root 权限
-if [ "$EUID" -ne 0 ]; then 
-    echo "请使用 root 用户运行此脚本"
-    exit 1
-fi
+sudo apt-mark hold openssh-server openssh-client || true
 
 # ✅ 创建 swap（标准写法，无重复判断）
 echo "创建4GB虚拟内存..."
-fallocate -l 4G /home/ubuntu/swapfile
-chmod 600 /home/ubuntu/swapfile
-mkswap /home/ubuntu/swapfile
-swapon /home/ubuntu/swapfile
-echo '/home/ubuntu/swapfile none swap sw 0 0' >> /etc/fstab
+SWAP_FILE="$HOME/swapfile"
+sudo fallocate -l 4G "$SWAP_FILE"
+sudo chmod 600 "$SWAP_FILE"
+sudo mkswap "$SWAP_FILE"
+sudo swapon "$SWAP_FILE"
+echo "$SWAP_FILE none swap sw 0 0" | sudo tee -a /etc/fstab
 
 # ✅ 安装依赖
-apt update
-apt install -y make build-essential libssl-dev zlib1g-dev \
+sudo apt update
+sudo apt install -y make build-essential libssl-dev zlib1g-dev \
   libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
   libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
   libffi-dev liblzma-dev git
 
-# ✅ 以 ubuntu 用户安装 pyenv、Python、虚拟环境
-sudo -u ubuntu -H bash <<'EOF'
-set -e
-export HOME="/home/ubuntu"
+# ✅ 安装 pyenv、Python、虚拟环境
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
@@ -62,30 +54,37 @@ eval "$(pyenv virtualenv-init -)"
 # 创建虚拟环境
 pyenv virtualenv 3.11.0 Alpha
 
-# 创建虚拟环境
-pyenv virtualenv 3.11.0 Alpha
-
 echo "pyenv 和 Alpha 环境安装完成"
-EOF
 
-echo "pyenv 和 Alpha 环境安装完成"
+# ✅ 安装 Node.js 和 PM2
+# 添加 NodeSource 仓库以获取最新的 LTS 版本
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
+sudo apt install -y nodejs
+
+# 安装稳定版本的 PM2
+sudo npm install -g pm2@5.3.0
+
+# 验证 PM2 安装
+pm2 --version
+
+# ✅ 安装 Chrome
+echo "安装谷歌..."
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt --fix-broken install -y
+rm -f google-chrome-stable_current_amd64.deb
+
+# 验证谷歌
+google-chrome --version
+
+# 完成
+echo " 安装完成！pyenv、Python、Alpha 虚拟环境、PM2、Chrome 安装成功"
 echo ""
-echo "🎉 基础安装完成！pyenv、Python、Alpha 虚拟环境、PM2、Chrome 安装成功"
-echo ""
-echo "请登录 ubuntu 用户后，执行以下命令完成安装："
+echo "请执行以下命令激活环境："
 echo "source ~/.bashrc"
 echo "pyenv activate Alpha"
 echo "pip install --upgrade pip setuptools wheel"
 echo "pip install xbx-py11"
 
-# ✅ 安装 Node.js 和 PM2
-apt install -y nodejs npm
-npm install -g pm2
-
-# ✅ 安装 Chrome
-cd /home/ubuntu
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-dpkg -i google-chrome-stable_current_amd64.deb || apt --fix-broken install -y
-rm -f google-chrome-stable_current_amd64.deb
-
-echo "🎉 安装完成！pyenv、Python、Alpha 虚拟环境、PM2、Chrome 安装成功"
+# 启动新的交互式 shell，保持在虚拟环境中
+exec $SHELL
+exit
