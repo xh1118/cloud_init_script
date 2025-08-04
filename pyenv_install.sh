@@ -56,6 +56,15 @@ pyenv virtualenv 3.11.0 Alpha
 
 echo "pyenv 和 Alpha 环境安装完成"
 
+# ✅ 自动激活环境并安装依赖
+echo "自动激活环境并安装依赖..."
+source ~/.bashrc
+pyenv activate Alpha
+pip install --upgrade pip setuptools wheel
+pip install xbx-py11
+
+echo "Python 依赖安装完成"
+
 # ✅ 安装 Node.js 和 PM2
 # 添加 NodeSource 仓库以获取最新的 LTS 版本
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
@@ -78,12 +87,6 @@ google-chrome --version
 
 # 完成
 echo " 安装完成！pyenv、Python、Alpha 虚拟环境、PM2、Chrome 安装成功"
-echo ""
-echo "请执行以下命令激活环境："
-echo "source ~/.bashrc"
-echo "pyenv activate Alpha"
-echo "pip install --upgrade pip setuptools wheel"
-echo "pip install xbx-py11"
 
 # 启动新的交互式 shell，保持在虚拟环境中
 exec $SHELL
