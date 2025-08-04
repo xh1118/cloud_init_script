@@ -93,9 +93,28 @@ rm -f google-chrome-stable_current_amd64.deb
 # 验证谷歌
 google-chrome --version
 
+# ✅ 安装中文字体解决乱码问题
+echo "安装中文字体..."
+cd /usr/share/fonts/
+sudo wget https://github.com/adobe-fonts/source-han-sans/releases/download/2.004R/SourceHanSansSC.zip
+sudo apt install unzip -y
+sudo unzip SourceHanSansSC.zip
+sudo mv OTF/ SourceHanSans/
+sudo fc-cache -fv
+rm -rf ~/.cache/matplotlib
+
+echo "中文字体安装完成"
+
 # 完成
-echo " 安装完成！pyenv、Python、Alpha 虚拟环境、PM2、Chrome 安装成功"
+echo " 安装完成！pyenv、Python、Alpha 虚拟环境、PM2、Chrome、中文字体安装成功"
+echo ""
+echo "请执行以下命令加载环境："
+echo "source ~/.bashrc"
+echo "pyenv activate Alpha"
+echo ""
+echo "或者直接使用："
+echo "pyenv shell Alpha"
 
 # 启动新的交互式 shell，保持在虚拟环境中
-exec $SHELL
+exec bash -l
 exit
