@@ -4,34 +4,34 @@ cat > startup.json <<EOF
     "apps": [
         {
             "name": "pmt-startup",
-            "script": "/home/ubuntu/git/position-mgmt-trading/startup.py",
-            "exec_interpreter": "/home/ubuntu/.pyenv/versions/3.11.0/envs/Alpha/bin/python",
+            "script": "$HOME/git/position-mgmt-trading/startup.py",
+            "exec_interpreter": "$HOME/.pyenv/versions/3.11.0/envs/Alpha/bin/python",
             "merge_logs": false,
             "watch": false,
-            "error_file": "/home/ubuntu/logs/pmt-startup.error.log",
-            "out_file": "/home/ubuntu/logs/pmt-startup.out.log",
+            "error_file": "$HOME/logs/pmt-startup.error.log",
+            "out_file": "$HOME/logs/pmt-startup.out.log",
             "autorestart": true,
             "max_memory_restart": "1G"
         },
         {
             "name": "pmt-monitor",
-            "script": "/home/ubuntu/git/position-mgmt-trading/monitor.py",
-            "exec_interpreter": "/home/ubuntu/.pyenv/versions/3.11.0/envs/Alpha/bin/python",
+            "script": "$HOME/git/position-mgmt-trading/monitor.py",
+            "exec_interpreter": "$HOME/.pyenv/versions/3.11.0/envs/Alpha/bin/python",
             "merge_logs": false,
             "watch": false,
-            "error_file": "/home/ubuntu/logs/pmt-monitor.error.log",
-            "out_file": "/home/ubuntu/logs/pmt-monitor.out.log",
+            "error_file": "$HOME/logs/pmt-monitor.error.log",
+            "out_file": "$HOME/logs/pmt-monitor.out.log",
             "autorestart": true,
             "max_memory_restart": "1G"
         },
         {
             "name": "pmt-delist",
-            "script": "/home/ubuntu/git/position-mgmt-trading/delist.py",
-            "exec_interpreter": "/home/ubuntu/.pyenv/versions/3.11.0/envs/Alpha/bin/python",
+            "script": "$HOME/git/position-mgmt-trading/delist.py",
+            "exec_interpreter": "$HOME/.pyenv/versions/3.11.0/envs/Alpha/bin/python",
             "merge_logs": false,
             "watch": false,
-            "error_file": "/home/ubuntu/logs/pmt-delist.error.log",
-            "out_file": "/home/ubuntu/logs/pmt-delist.out.log",
+            "error_file": "$HOME/logs/pmt-delist.error.log",
+            "out_file": "$HOME/logs/pmt-delist.out.log",
             "autorestart": true,
             "max_memory_restart": "1G"
         }

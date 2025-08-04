@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 1. 设置环境变量
-export PATH="/home/ubuntu/anaconda3/bin:$PATH"
+export PATH="$HOME/anaconda3/bin:$PATH"
 
 # 停止所有应用
 pm2 delete all
@@ -12,37 +12,37 @@ cat > startup.json <<EOF
     "apps": [
         {
             "name": "pmt-startup",
-            "script": "/home/ubuntu/git/position-mgmt-trading/startup.py",
-            "interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
-            "cwd": "/home/ubuntu/git/position-mgmt-trading",
+            "script": "$HOME/git/position-mgmt-trading/startup.py",
+            "interpreter": "$HOME/anaconda3/envs/Alpha/bin/python",
+            "cwd": "$HOME/git/position-mgmt-trading",
             "merge_logs": false,
             "watch": false,
-            "error_file": "/home/ubuntu/logs/pmt-startup.error.log",
-            "out_file": "/home/ubuntu/logs/pmt-startup.out.log",
+            "error_file": "$HOME/logs/pmt-startup.error.log",
+            "out_file": "$HOME/logs/pmt-startup.out.log",
             "autorestart": true,
             "max_memory_restart": "1G"
         },
         {
             "name": "pmt-monitor",
-            "script": "/home/ubuntu/git/position-mgmt-trading/monitor.py",
-            "interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
-            "cwd": "/home/ubuntu/git/position-mgmt-trading",
+            "script": "$HOME/git/position-mgmt-trading/monitor.py",
+            "interpreter": "$HOME/anaconda3/envs/Alpha/bin/python",
+            "cwd": "$HOME/git/position-mgmt-trading",
             "merge_logs": false,
             "watch": false,
-            "error_file": "/home/ubuntu/logs/pmt-monitor.error.log",
-            "out_file": "/home/ubuntu/logs/pmt-monitor.out.log",
+            "error_file": "$HOME/logs/pmt-monitor.error.log",
+            "out_file": "$HOME/logs/pmt-monitor.out.log",
             "autorestart": true,
             "max_memory_restart": "1G"
         },
         {
             "name": "pmt-delist",
-            "script": "/home/ubuntu/git/position-mgmt-trading/delist.py",
-            "interpreter": "/home/ubuntu/anaconda3/envs/Alpha/bin/python",
-            "cwd": "/home/ubuntu/git/position-mgmt-trading",
+            "script": "$HOME/git/position-mgmt-trading/delist.py",
+            "interpreter": "$HOME/anaconda3/envs/Alpha/bin/python",
+            "cwd": "$HOME/git/position-mgmt-trading",
             "merge_logs": false,
             "watch": false,
-            "error_file": "/home/ubuntu/logs/pmt-delist.error.log",
-            "out_file": "/home/ubuntu/logs/pmt-delist.out.log",
+            "error_file": "$HOME/logs/pmt-delist.error.log",
+            "out_file": "$HOME/logs/pmt-delist.out.log",
             "autorestart": true,
             "max_memory_restart": "1G"
         }

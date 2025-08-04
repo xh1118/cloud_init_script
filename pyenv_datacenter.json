@@ -1,0 +1,15 @@
+{
+  "apps": [
+    {
+      "name": "realtime",
+      "script": "$HOME/datacenter/realtime_data.py",
+      "exec_interpreter": "$HOME/.pyenv/versions/3.11.0/envs/Alpha/bin/python",
+      "merge_logs": false,
+      "watch": false,
+      "error_file": "$HOME/logs/realtime_data.error.log",
+      "out_file": "$HOME/logs/realtime_data.out.log",
+      "autorestart": true,
+      "max_memory_restart": "1G"
+    }
+  ]
+}

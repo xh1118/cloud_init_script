@@ -51,8 +51,20 @@ sudo apt --fix-broken install -y
 # 验证谷歌
 google-chrome --version
 
+# ✅ 安装中文字体解决乱码问题
+echo "安装中文字体..."
+cd /usr/share/fonts/
+sudo wget https://github.com/adobe-fonts/source-han-sans/releases/download/2.004R/SourceHanSansSC.zip
+sudo apt install unzip -y
+sudo unzip SourceHanSansSC.zip
+sudo mv OTF/ SourceHanSans/
+sudo fc-cache -fv
+rm -rf ~/.cache/matplotlib
+
+echo "中文字体安装完成"
+
 # 完成
-echo "Anaconda、PM2、谷歌和 Python 环境安装完成，且安装了 xbx-py11 库。"
+echo "Anaconda、PM2、谷歌和 Python 环境安装完成，且安装了 xbx-py11 库和中文字体。"
 
 # 启动新的交互式 shell，保持在虚拟环境中
 exec $SHELL
