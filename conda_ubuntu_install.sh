@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 设置非交互式模式
+export DEBIAN_FRONTEND=noninteractive
+
 # 安装 Anaconda
 echo "开始安装 Anaconda..."
 # 下载 Anaconda 安装脚本
