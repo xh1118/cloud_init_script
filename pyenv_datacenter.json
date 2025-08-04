@@ -4,6 +4,7 @@
       "name": "realtime",
       "script": "$HOME/datacenter/realtime_data.py",
       "exec_interpreter": "$HOME/.pyenv/versions/3.11.0/envs/Alpha/bin/python",
+      "cwd": "$HOME/datacenter",
       "merge_logs": false,
       "watch": false,
       "error_file": "$HOME/logs/realtime_data.error.log",
