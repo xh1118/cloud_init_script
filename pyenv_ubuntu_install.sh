@@ -52,7 +52,7 @@ echo 'eval "$(pyenv virtualenv-init -)"' >> "$HOME/.bashrc"
 eval "$(pyenv virtualenv-init -)"
 
 # 创建虚拟环境
-pyenv virtualenv 3.11.0 Alpha
+pyenv virtualenv 3.11 Alpha
 
 echo "pyenv 和 Alpha 环境安装完成"
 
