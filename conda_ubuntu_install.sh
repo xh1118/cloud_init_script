@@ -21,8 +21,8 @@ echo "开始安装 PM2..."
 # 安装 Node.js（PM2 依赖 Node.js）
 sudo apt update
 sudo apt install -y nodejs npm
-# 安装 PM2
-sudo npm install -g pm2
+# 安装 PM2 稳定版本 5.3
+sudo npm install -g pm2@5.3.0
 # 验证 PM2 安装
 pm2 --version
 
@@ -76,12 +76,13 @@ echo "Anaconda、PM2、谷歌和 Python 环境安装完成，且安装了 xbx-py
 # ✅ 自动初始化conda环境
 echo "自动初始化conda环境..."
 $HOME/anaconda3/bin/conda init bash
-# 重新加载 bashrc 配置
-source ~/.bashrc
+
 
 echo "conda环境初始化完成"
 echo ""
 echo "请执行以下命令激活环境："
+# 重新加载 bashrc 配置
+echo "source ~/.bashrc" 
 echo "conda activate Alpha"
 
 # 启动新的交互式 shell
