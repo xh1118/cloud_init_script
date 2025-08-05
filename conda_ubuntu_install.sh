@@ -11,7 +11,8 @@ wget https://repo.anaconda.com/archive/Anaconda3-2024.06-1-Linux-x86_64.sh -O ~/
 bash ~/anaconda_installer.sh -b -p $HOME/anaconda3
 # 将 Anaconda 添加到 PATH
 echo 'export PATH="$HOME/anaconda3/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
+# 在当前脚本中设置 PATH
+export PATH="$HOME/anaconda3/bin:$PATH"
 # 验证 Anaconda 安装
 conda --version
 
@@ -44,13 +45,16 @@ pip install xbx-py11
 
 # 安装谷歌
 echo "安装谷歌..."
-# 更新环境
-sudo apt update && sudo apt upgrade -y
+# 只更新包列表，不升级系统
+sudo apt update
+# 安装必要的依赖
+sudo apt install -y wget ca-certificates fonts-liberation libasound2 libatk-bridge2.0-0 libatk1.0-0 libcups2 libdbus-1-3 libdrm2 libgtk-3-0 libnspr4 libnss3 libxcomposite1 libxdamage1 libxrandr2 xdg-utils
 # 下载谷歌
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# 安装谷歌
-sudo dpkg -i google-chrome-stable_current_amd64.deb
-sudo apt --fix-broken install -y
+wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome.deb
+# 安装谷歌（使用 -y 参数避免交互）
+sudo dpkg -i /tmp/google-chrome.deb || sudo apt-get install -f -y
+# 清理下载文件
+rm -f /tmp/google-chrome.deb
 # 验证谷歌
 google-chrome --version
 
@@ -72,6 +76,7 @@ echo "Anaconda、PM2、谷歌和 Python 环境安装完成，且安装了 xbx-py
 # ✅ 自动初始化conda环境
 echo "自动初始化conda环境..."
 $HOME/anaconda3/bin/conda init bash
+# 重新加载 bashrc 配置
 source ~/.bashrc
 
 echo "conda环境初始化完成"
