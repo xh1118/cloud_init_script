@@ -3,7 +3,7 @@
     {
       "name": "realtime",
       "script": "/home/ubuntu/datacenter/realtime_data.py",
-      "exec_interpreter": "/home/ubuntu/.pyenv/versions/3.11.1/envs/Alpha/bin/python",
+      "exec_interpreter": "/home/ubuntu/.pyenv/versions/3.11.9/envs/Alpha/bin/python",
       "merge_logs": false,
       "watch": false,
       "error_file": "/home/ubuntu/logs/realtime_data.error.log",
