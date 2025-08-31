@@ -23,7 +23,7 @@ curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/conda_
 #### 2.1 pyenv 环境
 ```bash
 # 安装环境
-curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/pyenv_install.sh | bash
+curl -sSL https://raw.githubusercontent.com/xh1118/cloud_init_script/main/pyenv_ubuntu_install.sh | bash
 ```
 #### 2.2 数据中心应用
 ```bash
@@ -61,7 +61,7 @@ conda activate Alpha
 ### pyenv
 ```bash
 # Python 解释器
-$HOME/.pyenv/versions/3.11.0/envs/Alpha/bin/python
+$HOME/.pyenv/versions/3.11.11/envs/Alpha/bin/python
 
 # 激活环境
 source ~/.bashrc

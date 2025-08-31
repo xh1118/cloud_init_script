@@ -8,7 +8,7 @@ sudo apt-mark hold openssh-server openssh-client || true
 # ✅ 创建 swap（标准写法，无重复判断）
 echo "创建4GB虚拟内存..."
 SWAP_FILE="$HOME/swapfile"
-sudo fallocate -l 4G "$SWAP_FILE"
+sudo fallocate -l 8G "$SWAP_FILE"
 sudo chmod 600 "$SWAP_FILE"
 sudo mkswap "$SWAP_FILE"
 sudo swapon "$SWAP_FILE"
@@ -40,9 +40,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv init --path)"
 
-# 安装 Python 3.11.0
-pyenv install 3.11.0
-pyenv global 3.11.0
+# 安装 Python 3.11.11
+pyenv install 3.11.11
+pyenv global 3.11.11
 
 # 安装 pyenv-virtualenv 插件
 git clone https://github.com/pyenv/pyenv-virtualenv.git "$(pyenv root)/plugins/pyenv-virtualenv"
@@ -52,7 +52,7 @@ echo 'eval "$(pyenv virtualenv-init -)"' >> "$HOME/.bashrc"
 eval "$(pyenv virtualenv-init -)"
 
 # 创建虚拟环境
-pyenv virtualenv 3.11 Alpha
+pyenv virtualenv 3.11.11 Alpha
 
 echo "pyenv 和 Alpha 环境安装完成"
 
