@@ -69,7 +69,7 @@ which python
 
 # 安装依赖
 pip install --upgrade pip setuptools wheel
-pip install xbx-py11
+pip install xbx-py11==0.1.10
 
 echo "Python 依赖安装完成"
 
